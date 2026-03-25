@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Employees</h2>
+    
+    <!-- Add button -->
+    <a href="{% url 'employees:employee_add' %}" class="btn btn-primary mb-3">Add Employee</a>
+
+    <!-- Table -->
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>department</th>
+                <th>designation</th>
+                <th>employment_type</th>
+                <th>shift</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.full_name }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.designation}}</td>
+                <td>{{ employee.employment_type}}</td>
+                <td>{{ employee.shift}}</td>
+                <td>
+                    <a href="{% url 'employees:employee_detail' employee.pk %}" 
+                       class="btn btn-sm btn-info">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

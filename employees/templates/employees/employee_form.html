@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h2>{{ title }}</h2>
+        <div class="breadcrumb-text">
+            <a href="{% url 'employees:employee_list' %}"
+               style="color:#6B7280;text-decoration:none">Employees</a>
+            → {{ title }}
+        </div>
+    </div>
+</div>
+
+<div class="sms-card">
+    <form method="post" class="sms-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit" class="btn-sms-primary">Save Employee</button>
+            <a href="{% url 'employees:employee_list' %}"
+               class="btn-sms-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

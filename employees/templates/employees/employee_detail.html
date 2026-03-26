@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h2>{{ employee.full_name }}</h2>
+        <div class="breadcrumb-text">
+            <a href="{% url 'employees:employee_list' %}"
+               style="color:#6B7280;text-decoration:none">Employees</a>
+            → {{ employee.employee_id }}
+        </div>
+    </div>
+    <a href="{% url 'employees:employee_edit' employee.pk %}"
+       class="btn-sms-warning">Edit Employee</a>
+</div>
+
+<div class="sms-card">
+    <div class="card-title">Employee Information</div>
+    <div class="detail-grid">
+        <div class="detail-item">
+            <div class="detail-label">Employee ID</div>
+            <div class="detail-value">{{ employee.employee_id }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value">{{ employee.full_name }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Department</div>
+            <div class="detail-value">{{ employee.department }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Designation</div>
+            <div class="detail-value">{{ employee.designation }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Employment Type</div>
+            <div class="detail-value">{{ employee.get_employment_type_display }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Shift</div>
+            <div class="detail-value">{{ employee.get_shift_display }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Date of Joining</div>
+            <div class="detail-value">{{ employee.date_of_joining }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Gross Salary</div>
+            <div class="detail-value">₹ {{ employee.gross_salary }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value">{{ employee.email }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Phone</div>
+            <div class="detail-value">{{ employee.phone }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Bank</div>
+            <div class="detail-value">{{ employee.bank_name }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Account Number</div>
+            <div class="detail-value">{{ employee.bank_account }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">IFSC Code</div>
+            <div class="detail-value">{{ employee.bank_ifsc }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="detail-label">Status</div>
+            <div class="detail-value">
+                {% if employee.is_active %}
+                    <span class="badge-sms badge-active">Active</span>
+                {% else %}
+                    <span class="badge-sms badge-inactive">Inactive</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

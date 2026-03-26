@@ -46,9 +46,16 @@ def employee_edit(request, pk):
         'employee': employee
     })
 
-
-
-     
+@login_required
+def employee_delete(request, pk):
+    employee = get_object_or_404(Employee, pk=pk)
+    if request.method == 'POST':
+        employee.is_active = False
+        employee.save()
+        return redirect('employees:employee_list')
+    return render(request, 'employees/employee_list.html', {
+        'employee': employee
+    }) 
 
 
 
